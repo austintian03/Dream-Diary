@@ -1,116 +1,95 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(___TODO__: your project name_)
-
-# Shoppy Shoperson 
+# Dream Diary (name pending)
 
 ## Overview
 
-(___TODO__: a brief one or two paragraph, high-level description of your project_)
+Dream Diary is a web app that allows users to record memories of their dreams all into one place. After a user registers for an account and logs in, they can create dream entries. Each dream entry will include the date, the actual memory of the dream itself in text, and any associations or thoughts the user has with that dream.
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Once dream entries have been added, the home page (assuming the user is logged in) will prominently display the most recent (number of entries pending) dream entries.
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
 
 
 ## Data Model
+The application will store Users and Dreams
 
-(___TODO__: a description of your application's data and their relationships to each other_) 
-
-The application will store Users, Lists and Items
-
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(___TODO__: sample documents_)
+* users can have multiple dreams (by reference)
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "dreamydavid",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  lists: // an array of references to Dream documents
 }
 ```
 
-An Example List with Embedded Items:
+An Example Dream:
 
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  date: //A JavaScript Date object
+  dream: "I was being chased by a bear because I was covered in honey. But then I ran into a tree that teleported me high up in the sky. Instead of plummeting to Earth, I floated slowly down, catching parts of clouds to eat as cotton candy. When I finally touched the ground I woke up.", //a string that represents the dream
+  thoughts: "maybe the bear chasing me is a sign of my anxiety", //not required on initial entry, can be added later
 }
 ```
 
 
 ## [Link to Commented First Draft Schema](db.js) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
-
 ## Wireframes
 
 (___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+/ - registration and login page
 
-![list create](documentation/list-create.png)
+![home](documentation/home.png)
 
-/list - page for showing all shopping lists
+/dreams - displays most recent dream entries at top, table of dream entries, and button to record a dream entry
 
-![list](documentation/list.png)
+![dreams](documentation/dreams.png)
 
-/list/slug - page for showing specific shopping list
+/dreams/record - page for showing all shopping lists
 
-![list](documentation/list-slug.png)
+![dreams record](documentation/dreams-record.png)
+
+/dreams/slug - page for showing specific shopping list
+
+![dreams slug](documentation/dreams-slug.png)
 
 ## Site map
 
-(___TODO__: draw out a site map that shows how pages are related to each other_)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+![site map](documentation/site-map.png)
 
 ## User Stories or Use Cases
 
-(___TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
-
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can record a new dream
+4. as a user, I can view all my recorded dreams in one page
+5. as a user, I can view any specific dream in its own page
+6. as a user, I can edit my thoughts on any specific dream
 
 ## Research Topics
 
-(___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
+* (5 points) Automated functional testing with Headless Chrome
 
 * (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+    * use passport for user authentication
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+* (2 points) Bootstrap
+    * use Bootstrap as a CSS framework
+
+12 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
 
-(___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
-
 ## Annotations / References Used
 
-(___TODO__: list any tutorials/references/etc. that you've based your code off of_)
+1. [Headless Chrome tutorial](https://developers.google.com/web/updates/2017/06/headless-karma-mocha-chai)
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+2. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
+
+3. [bootstrap docs](https://getbootstrap.com/docs/4.5/getting-started/introduction/) - (add link to bootstrap configuration)

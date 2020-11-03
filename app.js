@@ -11,7 +11,7 @@ const session = require('express-session');
 const sessionOptions = {
     secret: 'secret cookie thang (store this elsewhere!)',
     resave: true,
-      saveUninitialized: true
+    saveUninitialized: false
 };
 app.use(session(sessionOptions));
 
@@ -24,9 +24,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req, res) => {
-  res.render('index');
-});
 
 app.listen(3000);
