@@ -73,15 +73,16 @@ An Example Dream:
 
 ## Research Topics
 
-* (5 points) Automated functional testing with Headless Chrome
-
 * (5 points) Integrate user authentication
     * use passport for user authentication
 
 * (2 points) Bootstrap
     * use Bootstrap as a CSS framework
 
-12 points total out of 8 required points
+* (1/2 points) Heroku
+    * use Heroku for deployment
+
+8/9 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
