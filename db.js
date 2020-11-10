@@ -25,7 +25,7 @@ const DreamSchema = new mongoose.Schema({
 //mongoose.model('User', User);
 mongoose.model('Dream', DreamSchema);
 
-const uri = process.env.MONGODB_URI || "mongodb+srv://adt339:MYjtx24yas7C75qb@dreamdb.a55jq.mongodb.net/dreamdiarydb?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 mongoose.Promise = global.Promise;
 
 //MYjtx24yas7C75qb
@@ -35,10 +35,8 @@ mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected...');
 });
 
+
 /*
-const uri = process.env.MONGODB_URI || "mongodb+srv://austintian03:DVrt10MxG6rnVmvl@dream-east.a55jq.mongodb.net/dreamdb?retryWrites=true";
-
-
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
   console.log('MongoDB Connected…')
@@ -46,5 +44,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
 .catch(err => console.log(err));
 */
 
+//local db testing
 //mongoose.connect('mongodb://localhost/dreamdb', { useNewUrlParser: true, useUnifiedTopology: true})
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below

@@ -10,10 +10,9 @@ const mongoose = require('mongoose');
 const Dream = mongoose.model('Dream');
 
 /*
-const uri = process.env.MONGODB_URI || "mongodb+srv://adt339:MYjtx24yas7C75qb@dreamdb.a55jq.mongodb.net/dreamdiarydb?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 mongoose.Promise = global.Promise;
 
-//MYjtx24yas7C75qb
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.connection.on('connected', () => {
