@@ -81,6 +81,7 @@ An Example Dream:
 
 * (1/2 points) Heroku
     * use Heroku for deployment
+    * figure out a way to integrate mongodb with Heroku
 
 8/9 points total out of 8 required points
 
@@ -89,7 +90,8 @@ An Example Dream:
 
 ## Annotations / References Used
 
-1. [Headless Chrome tutorial](https://developers.google.com/web/updates/2017/06/headless-karma-mocha-chai)
+1. [heroku](https://devcenter.heroku.com/articles/preparing-a-codebase-for-heroku-deployment) 
+    * [mongodb atlas integration](https://developer.mongodb.com/how-to/use-atlas-on-heroku)
 
 2. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
 
