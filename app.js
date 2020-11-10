@@ -30,17 +30,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+app.get('/dreams', (req, res) => {
     Dream.find((err, dreams, count) => {
         res.render('dreams', {dreams: dreams});
     })
 });
 
-app.get('/record', (req, res) => {
+app.get('/dreams/record', (req, res) => {
     res.render('record');
 });
 
-app.post('/record', (req, res) => {
+app.post('/dreams/record', (req, res) => {
     const newDream = new Dream({
         date: req.body.date,
         dream: req.body.dream,
