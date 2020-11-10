@@ -1,4 +1,4 @@
-require('./db');
+require('./db.js');
 
 const express = require('express');
 const path = require('path');
@@ -30,17 +30,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/dreams', (req, res) => {
-    Dream.find((err, dreams, count) => {
-        res.render('dreams', {dreams: dreams});
+app.get('/', (req, res) => {
+    Dream.find((err, dreams) => {
+        if(err) {
+            console.log(err);
+            res.render('dreams', {dreams: {}});
+        }
+        else {
+            res.render('dreams', {dreams: dreams});
+        }
     })
 });
 
-app.get('/dreams/record', (req, res) => {
+app.get('/record', (req, res) => {
     res.render('record');
 });
 
-app.post('/dreams/record', (req, res) => {
+app.post('/record', (req, res) => {
     const newDream = new Dream({
         date: req.body.date,
         dream: req.body.dream,
@@ -48,12 +54,14 @@ app.post('/dreams/record', (req, res) => {
     });
 
     newDream.save((err) => {
-            res.redirect('dreams');
+            if(!err) {
+                res.redirect('/');
+            }
     });
 });
 
 let port = process.env.PORT;
 if(port == null || port =="") {
-    port = 8000;
+    port = 3000;
 }
 app.listen(port);

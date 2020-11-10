@@ -1,6 +1,6 @@
 // 1ST DRAFT DATA MODEL
 const mongoose = require('mongoose');
-
+mongoose.promise = global.Promise;
 // users
 // * our site requires authentication...
 // * so users have a username and password
@@ -25,5 +25,12 @@ const Dream = new mongoose.Schema({
 mongoose.model('Dream', Dream);
 
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri);
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+  console.log('MongoDB Connected…')
+})
+.catch(err => console.log(err));
+
+//mongoose.connect('mongodb://localhost/dreamdb', { useNewUrlParser: true, useUnifiedTopology: true})
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below
