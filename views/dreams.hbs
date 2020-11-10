@@ -1,0 +1,21 @@
+<h2>Your Dreams</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Dream</th>
+            <th scope="col">Thoughts</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each dreams}}
+        <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.dream}}</td>
+            <td>{{this.thoughts}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<a href="/dreams/record">Record a Dream</a>
