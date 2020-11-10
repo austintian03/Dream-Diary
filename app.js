@@ -2,7 +2,7 @@ require('./db.js');
 
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // body parser setup
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     Dream.find((err, dreams) => {
         if(err) {
             console.log(err);
-            res.render('dreams', {dreams: {}});
+            //res.render('dreams', {dreams: {}});
         }
         else {
             res.render('dreams', {dreams: dreams});
@@ -60,8 +60,4 @@ app.post('/record', (req, res) => {
     });
 });
 
-let port = process.env.PORT;
-if(port == null || port =="") {
-    port = 3000;
-}
-app.listen(port);
+app.listen(process.env.PORT || 3000);
