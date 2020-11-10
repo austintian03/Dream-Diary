@@ -15,10 +15,15 @@ const User = new mongoose.Schema({
 // * each dream must have a related user, date/timestamp, and dream text
 // * thoughts are optional and can be added later
 const Dream = new mongoose.Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
+  //user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   date: {type: Date, required: true},
   dream: {type: String, required: true},
   thoughts: {type: String}
 });
 
+//mongoose.model('User', User);
+mongoose.model('Dream', Dream);
+
+const uri = process.env.MONGODB_URI;
+mongoose.connect(uri);
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below

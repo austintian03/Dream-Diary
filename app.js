@@ -6,7 +6,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const mongoose = require('mongoose');
+const Dream = mongoose.model('Dream');
+
 // enable sessions
+/*
 const session = require('express-session');
 const sessionOptions = {
     secret: 'secret cookie thang (store this elsewhere!)',
@@ -14,6 +18,7 @@ const sessionOptions = {
     saveUninitialized: false
 };
 app.use(session(sessionOptions));
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,4 +30,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(3000);
+app.get('/dreams', (req, res) => {
+    Dream.find((err, dreams, count) => {
+        res.render('dreams', {dreams: dreams});
+    })
+});
+
+app.get('dreams/record', (req, res) => {
+    res.render('record');
+});
+
+app.post('dreams/record', (req, res) => {
+    const newDream = new Dream({
+        date: req.body.date,
+        dream: req.body.dream,
+        thoughts: req.body.thoughts
+    });
+
+    newDream.save((err) => {
+            res.redirect('dreams');
+    });
+});
+
+let port = process.env.PORT;
+if(port == null || port =="") {
+    port = 8000;
+}
+app.listen(port);
