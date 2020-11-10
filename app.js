@@ -9,6 +9,47 @@ const app = express();
 const mongoose = require('mongoose');
 const Dream = mongoose.model('Dream');
 
+/*
+const uri = process.env.MONGODB_URI || "mongodb+srv://adt339:MYjtx24yas7C75qb@dreamdb.a55jq.mongodb.net/dreamdiarydb?retryWrites=true&w=majority";
+mongoose.Promise = global.Promise;
+
+//MYjtx24yas7C75qb
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose is connected...');
+});
+
+
+// schema
+const DreamSchema = new mongoose.Schema({
+    date: {type: String, default: Date.now()},
+    dream: String,
+    thoughts: String
+});
+*/
+
+//model
+//const Dream = mongoose.model('Dream', DreamSchema);
+
+/*
+//saving data to mongodb
+const data = {
+    dream: 'stuck in a never-ending nightmare of deployment',
+    thoughts: 'worst dream ever'
+};
+
+const newDream = new Dream(data)
+//.save();
+newDream.save((err) => {
+    if(err) {
+        console.log("oh narts :(");
+    }
+    else {
+        console.log('Dream has been recorded.')
+    }
+});*/
+
 // enable sessions
 /*
 const session = require('express-session');
@@ -30,24 +71,10 @@ app.use(express.urlencoded({ extended: false }));
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-    const uri = process.env.MONGODB_URI;
-    mongoose.Promise = global.Promise;
-
-    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => {
-        console.log('MongoDB Connected…')
-    })
-    .catch(err => console.log(err));
-    
-    next();
-});
-
 app.get('/', (req, res) => {
     Dream.find((err, dreams) => {
         if(err) {
             console.log(err);
-            //res.render('dreams', {dreams: {}});
         }
         else {
             res.render('dreams', {dreams: dreams});
@@ -70,7 +97,10 @@ app.post('/record', (req, res) => {
             if(!err) {
                 res.redirect('/');
             }
+            else {
+                console.log(err);
+            }
     });
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 5000);
