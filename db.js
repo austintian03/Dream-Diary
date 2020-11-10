@@ -28,7 +28,6 @@ mongoose.model('Dream', DreamSchema);
 const uri = process.env.MONGODB_URI;
 mongoose.Promise = global.Promise;
 
-//MYjtx24yas7C75qb
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.connection.on('connected', () => {

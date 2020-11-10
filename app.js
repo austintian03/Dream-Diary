@@ -9,7 +9,7 @@ const app = express();
 const mongoose = require('mongoose');
 const Dream = mongoose.model('Dream');
 
-/*
+/* moved code from db.js to app.js to see if that would fix anything regarding deployment
 const uri = process.env.MONGODB_URI;
 mongoose.Promise = global.Promise;
 
