@@ -1,4 +1,4 @@
-require('./db.js');
+require('./db');
 
 const express = require('express');
 const path = require('path');
@@ -29,6 +29,19 @@ app.use(express.urlencoded({ extended: false }));
 
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+    const uri = process.env.MONGODB_URI;
+    mongoose.Promise = global.Promise;
+
+    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => {
+        console.log('MongoDB Connected…')
+    })
+    .catch(err => console.log(err));
+    
+    next();
+});
 
 app.get('/', (req, res) => {
     Dream.find((err, dreams) => {

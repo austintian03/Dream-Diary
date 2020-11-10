@@ -23,17 +23,17 @@ const Dream = new mongoose.Schema({
 });
 
 //mongoose.model('User', User);
-mongoose.model('Dream', Dream);
+module.exports = mongoose.model('Dream', Dream, 'Dreams');
 
-const uri = process.env.MONGODB_URI;
+//const uri = process.env.MONGODB_URI;
 
-
+/*
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
   console.log('MongoDB Connected…')
 })
 .catch(err => console.log(err));
-
+*/
 
 //mongoose.connect('mongodb://localhost/dreamdb', { useNewUrlParser: true, useUnifiedTopology: true})
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below
