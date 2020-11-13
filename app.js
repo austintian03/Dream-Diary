@@ -87,7 +87,7 @@ app.get('/record', (req, res) => {
 
 app.post('/record', (req, res) => {
     const newDream = new Dream({
-        date: req.body.date,
+        date: req.body.date.toString(),
         dream: req.body.dream,
         thoughts: req.body.thoughts
     });
@@ -102,4 +102,4 @@ app.post('/record', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 3000);
