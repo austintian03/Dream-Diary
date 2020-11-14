@@ -1,19 +1,23 @@
 <h2>Your Dreams</h2>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th scope="col">Date</th>
+            <th scope="col">Title</th>
             <th scope="col">Dream</th>
             <th scope="col">Thoughts</th>
+            <th scope="col">Edit</th>
         </tr>
     </thead>
     <tbody>
         {{#each dreams}}
         <tr>
             <td>{{this.date}}</td>
+            <td>{{this.title}}</td>
             <td>{{this.dream}}</td>
             <td>{{this.thoughts}}</td>
+            <td><a href="/dreams/{{this.myslug}}">Add some thoughts!</a></td>
         </tr>
         {{/each}}
     </tbody>

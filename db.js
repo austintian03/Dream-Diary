@@ -1,5 +1,6 @@
 // 1ST DRAFT DATA MODEL
 const mongoose = require('mongoose');
+const URLSlugs = require('mongoose-url-slugs')
 //mongoose.promise = global.Promise;
 // users
 // * our site requires authentication...
@@ -18,14 +19,16 @@ const User = new mongoose.Schema({
 const DreamSchema = new mongoose.Schema({
   //user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   date: {type: String, default: Date.now()},
+  title: String,
   dream: String,
   thoughts: String
 });
 
+DreamSchema.plugin(URLSlugs('date title', {field: 'myslug'}));
 //mongoose.model('User', User);
 mongoose.model('Dream', DreamSchema);
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || "mongodb+srv://adt339:MYjtx24yas7C75qb@dreamdb.a55jq.mongodb.net/dreamdiarydb?retryWrites=true&w=majority";
 mongoose.Promise = global.Promise;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});

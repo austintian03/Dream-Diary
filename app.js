@@ -9,46 +9,6 @@ const app = express();
 const mongoose = require('mongoose');
 const Dream = mongoose.model('Dream');
 
-/* moved code from db.js to app.js to see if that would fix anything regarding deployment
-const uri = process.env.MONGODB_URI;
-mongoose.Promise = global.Promise;
-
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
-
-mongoose.connection.on('connected', () => {
-    console.log('Mongoose is connected...');
-});
-
-
-// schema
-const DreamSchema = new mongoose.Schema({
-    date: {type: String, default: Date.now()},
-    dream: String,
-    thoughts: String
-});
-*/
-
-//model
-//const Dream = mongoose.model('Dream', DreamSchema);
-
-/*
-//saving data to mongodb
-const data = {
-    dream: 'stuck in a never-ending nightmare of deployment',
-    thoughts: 'worst dream ever'
-};
-
-const newDream = new Dream(data)
-//.save();
-newDream.save((err) => {
-    if(err) {
-        console.log("oh narts :(");
-    }
-    else {
-        console.log('Dream has been recorded.')
-    }
-});*/
-
 // enable sessions
 /*
 const session = require('express-session');
@@ -81,6 +41,18 @@ app.get('/', (req, res) => {
     })
 });
 
+app.get('/dreams/:dreamSlug', (req, res) => {
+    const slug = req.params.dreamSlug;
+    Dream.findOne({myslug: slug}, (err, dream) => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.render('dream-slug', {dream: dream});
+        }
+    });
+});
+
 app.get('/record', (req, res) => {
     res.render('record');
 });
@@ -88,6 +60,7 @@ app.get('/record', (req, res) => {
 app.post('/record', (req, res) => {
     const newDream = new Dream({
         date: req.body.date.toString(),
+        title: req.body.title,
         dream: req.body.dream,
         thoughts: req.body.thoughts
     });
