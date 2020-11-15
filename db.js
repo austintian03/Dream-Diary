@@ -25,7 +25,7 @@ const DreamSchema = new mongoose.Schema({
   thoughts: String
 });
 
-DreamSchema.plugin(URLSlugs('date title', {field: 'myslug'}));
+DreamSchema.plugin(URLSlugs('date title', {field: 'myslug', update: true}));
 mongoose.model('User', UserSchema);
 mongoose.model('Dream', DreamSchema);
 
