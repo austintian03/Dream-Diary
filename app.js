@@ -2,11 +2,20 @@ require('./db');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session)
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 //const bodyParser = require('body-parser');
 
 const app = express();
+const sessStore = new MongoDBStore({
+    uri: process.env.MONGODB_URI, //|| 'mongodb://localhost/dreamTester'
+    collection: 'sessions'
+})
+
+sessStore.on('error', function(error) {
+    console.log(error);
+});
 
 const mongoose = require('mongoose');
 const Dream = mongoose.model('Dream');
@@ -20,7 +29,11 @@ passport.deserializeUser(User.deserializeUser());
 
 // enable sessions
 const sessionOptions = {
-    secret: 'secret cookie thang (store this elsewhere!)',
+    secret: 'dreamy cookie (store this elsewhere!)',
+    store: sessStore,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    },
     resave: false,
     saveUninitialized: false
 };
@@ -186,7 +199,12 @@ app.post('/login', function(req,res,next) {
     passport.authenticate('local', function(err,user) {
         if(user) {
             req.logIn(user, function(err) {
-                res.redirect('/dreams');
+                req.session.save(function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.redirect('/dreams');
+                });
             });
         } 
         else {
@@ -206,7 +224,12 @@ app.post('/register', function(req, res) {
         } 
         else {
             passport.authenticate('local')(req, res, function() {
-                res.redirect('/dreams');
+                req.session.save(function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.redirect('/dreams');
+                });
             });
         }
     });   
@@ -214,6 +237,7 @@ app.post('/register', function(req, res) {
 
 app.post('/logout', (req, res) => {
     req.logout();
+    req.session.destroy();
     res.redirect('/');
 });
 
