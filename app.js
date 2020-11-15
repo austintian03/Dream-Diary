@@ -53,43 +53,114 @@ app.get('/', (req, res) => {
     if(req.user) {
         res.redirect('/dreams');
     }
-    else{
+    else {
         res.render('index', {message: req.session.message});
     }
 });
 
 app.get('/dreams', (req, res) => {
-    if(!req.user) { res.redirect('/') };
-
-    Dream.find({user: req.user._id}, (err, dreams) => {
-        if(err) {
-            console.log(err);
-        }
-        else {
-            res.render('dreams', {dreams: dreams});
-        }
-    })
+    if(!req.user) { 
+        res.redirect('/') 
+    }
+    else {
+        Dream.find({user: req.user._id}, (err, dreams) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.render('dreams', {dreams: dreams});
+            }
+        }) 
+    }
 });
 
 app.get('/dreams/:dreamSlug', (req, res) => {
-    if(!req.user) { res.redirect('/') };
+    if(!req.user) { 
+        res.redirect('/') 
+    }
+    else {
+        const slug = req.params.dreamSlug;
+        Dream.findOne({user: req.user._id, myslug: slug}, (err, dream) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.render('dream-slug', {dream: dream});
+            }
+        });
+    }
+    
+});
 
+app.get('/dreams/:dreamSlug/edit', (req, res) => {
+    if(!req.user) { 
+        res.redirect('/') 
+    }
+    else {
+        const slug = req.params.dreamSlug;
+        Dream.findOne({user: req.user._id, myslug: slug}, (err, dream) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.render('edit-dream', {dream: dream});
+            }
+        });
+    }
+})
+
+app.post('/dreams/:dreamSlug/edit', (req, res) => {
     const slug = req.params.dreamSlug;
-    Dream.findOne({user: req.user._id, myslug: slug}, (err, dream) => {
+    const filter = {user: req.user._id, myslug: slug};
+    /*
+    const update = {
+        $set: {
+            date: req.body.date.toString(), 
+            title: req.body.title,
+            dream: req.body.dream,
+            thoughts: req.body.thoughts
+        }
+    }
+    */
+
+    Dream.findOne(filter, (err, dream) => {
         if(err) {
             console.log(err);
-        }
+        }   
         else {
-            res.render('dream-slug', {dream: dream});
+            dream.date = req.body.date.toString();
+            dream.title = req.body.title;
+            dream.dream = req.body.dream;
+            dream.thoughts = req.body.thoughts;
+            dream.save((err) => {
+                if(!err) {
+                    res.redirect(`/dreams/${slug}`);
+                }
+                else {
+                    console.log(err);
+                }
+            });
         }
-    });
+    })
+
+    /*
+    Dream.findOneAndUpdate(filter, update, (err) => {
+        if(err) {
+            console.log(err);
+        }   
+        else {
+            res.redirect(`/dreams/${slug}`);
+        }
+    })*/
 });
-//todo: app.post('/dreams/:dreamSlug') using Dream.findOneAndUpdate()
 
 app.get('/record', (req, res) => {
-    if(!req.user) { res.redirect('/') };
-
-    res.render('record');
+    if(!req.user) { 
+        res.redirect('/') 
+    }
+    else {
+        res.render('record');
+    }
 });
 
 app.post('/record', (req, res) => {
