@@ -147,7 +147,7 @@ app.post('/dreams/:dreamSlug/edit', (req, res) => {
             dream.thoughts = req.body.thoughts;
             dream.save((err) => {
                 if(!err) {
-                    res.redirect(`/dreams/${slug}`);
+                    res.redirect(`/dreams/${dream.myslug}`);
                 }
                 else {
                     console.log(err);
