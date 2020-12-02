@@ -1,5 +1,21 @@
 <h2>Your Dreams</h2>
 
+<form class="filter" method="GET" action="">
+    <ul>
+        <li>   
+            <label for="dateQ">Date: </label>
+            <input type="date" name="dateQ" id="dateQ" pattern="\d{4}-\d{2}-\d{2}">
+        </li>
+
+        <li>   
+            <label for="searchQ">Search For: </label>
+            <input type="text" name="searchQ" id="searchQ">
+        </li>
+    </ul>
+
+    <input type="submit" value="Filter">
+</form>
+
 <table class="table">
     <thead>
         <tr>

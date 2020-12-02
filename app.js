@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const app = express();
 const sessStore = new MongoDBStore({
-    uri: process.env.MONGODB_URI, //|| 'mongodb://localhost/dreamTester'
+    uri: process.env.MONGODB_URI || 'mongodb://localhost/dreamTester',
     collection: 'sessions'
 })
 
@@ -76,12 +76,37 @@ app.get('/dreams', (req, res) => {
         res.redirect('/') 
     }
     else {
-        Dream.find({user: req.user._id}, (err, dreams) => {
+        const filter = {user: req.user._id};
+        const searchQ = req.query.searchQ;
+        const dateQ = req.query.dateQ;
+
+        Dream.find(filter, (err, dreams) => {
             if(err) {
                 console.log(err);
             }
             else {
-                res.render('dreams', {dreams: dreams});
+                let filteredDreams = dreams;
+                if(searchQ && !dateQ) {
+                    filteredDreams = dreams.filter(dream => {
+                        return dream.title.indexOf(searchQ) !== -1 || dream.dream.indexOf(searchQ) !== -1 || dream.thoughts.indexOf(searchQ) !== -1;
+                    });
+                }
+                else if(!searchQ && dateQ) {
+                    filteredDreams = dreams.filter(dream => {
+                        const dreamDate = new Date(dream.date);
+                        const fromDate = new Date(dateQ);
+                        return dreamDate.getTime() >= fromDate.getTime();
+                    });
+                }
+                else if(searchQ && dateQ) {
+                    filteredDreams = dreams.filter(dream => {
+                        const dreamDate = new Date(dream.date);
+                        const fromDate = new Date(dateQ);
+                        return dreamDate.getTime() >= fromDate.getTime() && (dream.title.indexOf(searchQ) !== -1 || dream.dream.indexOf(searchQ) !== -1 || dream.thoughts.indexOf(searchQ) !== -1);
+                    });
+                }
+                
+                res.render('dreams', {dreams: filteredDreams});
             }
         }) 
     }
