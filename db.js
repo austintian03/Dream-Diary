@@ -19,7 +19,7 @@ UserSchema.plugin(passportLocalMongoose);
 // * thoughts are optional and can be added later
 const DreamSchema = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  date: {type: String, default: Date.now()},
+  date: String,
   title: String,
   dream: String,
   thoughts: String
@@ -29,7 +29,7 @@ DreamSchema.plugin(URLSlugs('date title', {field: 'myslug', update: true}));
 mongoose.model('User', UserSchema);
 mongoose.model('Dream', DreamSchema);
 
-const uri = process.env.MONGODB_URI; //|| 'mongodb://localhost/dreamTester'
+const uri = process.env.MONGODB_URI || 'mongodb://localhost/dreamTester';
 mongoose.Promise = global.Promise;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
