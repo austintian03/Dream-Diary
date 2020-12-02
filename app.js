@@ -105,7 +105,12 @@ app.get('/dreams', (req, res) => {
                         return dreamDate.getTime() >= fromDate.getTime() && (dream.title.indexOf(searchQ) !== -1 || dream.dream.indexOf(searchQ) !== -1 || dream.thoughts.indexOf(searchQ) !== -1);
                     });
                 }
-                
+                filteredDreams.sort((dream1, dream2) => {
+                    const date1 = new Date(dream1.date);
+                    const date2 = new Date(dream2.date);
+                    return date2.getTime() - date1.getTime();
+                });
+
                 res.render('dreams', {dreams: filteredDreams});
             }
         }) 
