@@ -1,0 +1,67 @@
+$body-bg: #141852;
+$body-color: white;
+
+$theme-colors: (
+    "danger": #e83e8c,
+    "primary": #855988,
+    "secondary": #6B4984,
+    "dark": #070B34,
+    "light": #ffdb57,
+    "custom-1": #f8c0d8, 
+    "custom-2": #2B2F77
+);
+
+$link-color: #f8c0d8;
+
+$link-hover-decoration: none;
+
+$sizes: (
+    5: 5%,
+    10: 10%,
+    15: 15%,
+    20: 20%,
+    30: 30%
+);
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+//overridden/added styles
+.table {
+    width: 75%
+}
+
+p {
+    font-size: 1.35em;
+    width: 30%;
+    margin: auto;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.logout {
+    text-align: center;
+    margin-top: 100px
+
+}
+
+.filter {
+    margin-top: 30px;
+}
+
+.record {
+    margin-bottom: 10px;
+}
+
+.edit {
+    margin-bottom: 10px;
+}
+
+.form-group {
+    font-size: 1.25em;
+}
+.form-control {
+    text-align: center;
+    font-size: 1em;
+    margin: auto;
+}
+

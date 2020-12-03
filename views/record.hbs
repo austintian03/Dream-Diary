@@ -1,28 +1,38 @@
-<h2>Record Your Dream</h2>
 
-<form class="record" method="POST" action="">
-    <ul>
-        <li>   
-            <label for="date">Date: </label>
-            <input type="date" name="date" id="date" required pattern="\d{4}-\d{2}-\d{2}">
-        </li>
+<h2 class="text-light">Record Your Dream</h2>
 
-        <li>   
-            <label for="title">Title: </label>
-            <input type="text" name="title" id="title" required>
-        </li>
+<form class="record font-weight-bold" method="POST" action="">
+    <div class="form-group">
+        <label for="date">Date: </label>
+        
+        <input type="date" class="form-control w-auto" name="date" id="date" required pattern="\d{4}-\d{2}-\d{2}">
+    
+    </div>
 
-        <li>
-            <label for="dream">Dream: </label>
-            <input type="text" name="dream" id="dream" required>
-        </li>
+    <div class="form-group">  
+        <label for="title" >Title: </label>
+        
+        <input type="text" class="form-control w-15" name="title" id="title" required>
+        
+    </div>
+    
+    <div class="form-group">
+        <label for="dream" >Dream: </label>
+        
+        <textarea class="form-control w-25 text-left" name="dream" id="dream" required></textarea>
+        
+    </div>
 
-        <li>
-            <label for="thoughts" name="thoughts" id="thoughts">Thoughts: </label>
-            <input type="text" name="thoughts" id="thoughts">
-        </li>
-    </ul>
+    <div class="form-group">
+        <label for="thoughts">Thoughts: </label>
+        
+        <textarea class="form-control w-25 text-left" name="thoughts" id="thoughts"></textarea>
+        
+    </div>
+    
 
-    <input type="submit" value="Record">
+    <button type="submit" class="btn btn-primary">Record</button>
 </form>
-<a href="/">Back to Home</a>
+
+<button class="btn btn-secondary"><a href="/dreams">Back to Dreams</a></button>
+

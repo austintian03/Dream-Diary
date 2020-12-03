@@ -1,36 +1,32 @@
-<h2>Your Dreams</h2>
 
-<form class="filter" method="GET" action="">
-    <ul>
-        <li>   
-            <label for="dateQ">From Date: </label>
-            <input type="date" name="dateQ" id="dateQ" pattern="\d{4}-\d{2}-\d{2}">
-        </li>
+<h1 class="text-light">Your Dreams</h2>
 
-        <li>   
-            <label for="searchQ">Search For: </label>
-            <input type="text" name="searchQ" id="searchQ">
-        </li>
-    </ul>
-
-    <input type="submit" value="Filter">
+<form class="filter" method="GET" action="">  
+    <label for="dateQ">From Date: </label>
+    <input type="date" class="rounded border" name="dateQ" id="dateQ" pattern="\d{4}-\d{2}-\d{2}">
+           
+    <label for="searchQ">Search For: </label>
+    <input type="text" class="rounded border" name="searchQ" id="searchQ">
+        
+    <button class="btn btn-secondary" type="submit">Filter</button>
 </form>
+</div>
 
-<table class="table">
+<table class="table table-bordered mx-auto text-left">
     <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Title</th>
-            <th scope="col">Dream</th>
-            <th scope="col">Thoughts</th>
-            <th scope="col">Edit</th>
+        <tr class="bg-dark">
+            <th scope="col" class="w-15">Title</th>
+            <th scope="col" class="w-10">Date</th>
+            <th scope="col" class="w-25">Dream</th>
+            <th scope="col" class="w-20">Thoughts</th>
+            <th scope="col" class="w-10">Edit</th>
         </tr>
     </thead>
     <tbody>
         {{#each dreams}}
         <tr>
+            <th scope="row" class="text-light">{{this.title}}</th>
             <td>{{this.date}}</td>
-            <td>{{this.title}}</td>
             <td>{{this.dream}}</td>
             <td>{{this.thoughts}}</td>
             <td><a href="/dreams/{{this.myslug}}">Add some thoughts!</a></td>
@@ -38,4 +34,5 @@
         {{/each}}
     </tbody>
 </table>
-<a href="/record">Record a Dream</a>
+<div class="text-center">
+<button class="btn btn-primary"><a class="text-white" href="/record">Record a Dream</a></button>

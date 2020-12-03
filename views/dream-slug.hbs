@@ -1,10 +1,14 @@
-<h2>{{dream.title}}</h2>
-<em>{{dream.date}}</em>
+<div class="text-center">
+<h2 class="text-light">
+    {{dream.title}}
+</h2>
+<em class="text-muted">{{dream.date}}</em>
 
 <p>{{dream.dream}}</p>
 
-<h3>Thoughts</h3>
+<h3 class="text-custom-1">Thoughts</h3>
 <p>{{dream.thoughts}}</p>
 
-<a href="/dreams/{{dream.myslug}}/edit">Edit Dream</a><br>
-<a href="/dreams">Back to Dreams</a>
+<button class="btn btn-primary"><a class="text-white" href="/dreams/{{dream.myslug}}/edit">Edit Dream</a></button>
+<button class="btn btn-secondary"><a href="/dreams">Back to Dreams</a></button>
+</div>
