@@ -1,5 +1,5 @@
 
-# Dream Diary (name pending)
+# Dream Diary
 
 ## Overview
 
@@ -33,9 +33,6 @@ An Example Dream:
 }
 ```
 
-
-## [Link to Commented First Draft Schema](db.js) 
-
 ## Wireframes
 / - registration and login page
 
@@ -65,20 +62,6 @@ An Example Dream:
 4. as a user, I can view all my recorded dreams in one page
 5. as a user, I can view any specific dream in its own page
 6. as a user, I can edit anything about a specific dream
-
-## Research Topics
-
-* (5 points) Integrate user authentication
-    * use passport for user authentication
-
-* (2 points) Bootstrap
-    * use Bootstrap as a CSS framework
-
-* (1/2 points) Heroku
-    * use Heroku for deployment
-    * figure out a way to integrate mongodb with Heroku
-
-8/9 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
