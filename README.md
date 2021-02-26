@@ -1,12 +1,11 @@
 
-# [Dream Diary](dream-diary-339.herokuapp.com)
+# [Dream Diary](http://dream-diary-339.herokuapp.com/)
 
 ## Overview
 
-Dream Diary is a web app that allows users to record memories of their dreams all into one place. After a user registers for an account and logs in, they can create dream entries. Each dream entry will include the date, the actual memory of the dream itself in text, and any associations or thoughts the user has with that dream.
+[Dream Diary](http://dream-diary-339.herokuapp.com/) is a web app that allows users to record memories of their dreams all into one place. After a user registers for an account and logs in, they can create dream entries. Each dream entry will include the date, the actual memory of the dream itself in text, and any associations or thoughts the user has with that dream.
 
 Once dream entries have been added, the home page (assuming the user is logged in) will prominently display the most recent (number of entries pending) dream entries.
-
 
 
 ## Data Model
