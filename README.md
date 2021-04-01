@@ -25,33 +25,25 @@ An Example Dream:
 ```javascript
 {
   user: // a reference to a User object
-  date: //A JavaScript Date object
+  date: "2020-12-01" //String representation of a date
   title: "A Strange Adventure"
-  dream: "I was being chased by a bear because I was covered in honey. But then I ran into a tree that teleported me high up in the sky. Instead of plummeting to Earth, I floated slowly down, catching parts of clouds to eat as cotton candy. When I finally touched the ground I woke up.", //a string that represents the dream
+  dream: "I was being chased by a bear because I was covered in honey. But then I ran into a tree that teleported me high up in the sky. Instead of plummeting to Earth, I floated slowly down, catching parts of clouds to eat as cotton candy. When I finally touched the ground I woke up.", //String representation of the dream
   thoughts: "maybe the bear chasing me is a sign of my anxiety", //not required on initial entry, can be added later
 }
 ```
-
+<!---
 ## Wireframes
 / - registration and login page
-
 ![home](documentation/home.png)
-
 /dreams - displays most recent dream entries at top, table of dream entries, and button to record a dream entry
-
 ![dreams](documentation/dreams.png)
-
 /dreams/record - page for recording the details of a dream
-
 ![dreams record](documentation/dreams-record.png)
-
 /dreams/slug - page for showing specific dream
-
 ![dreams slug](documentation/dreams-slug.png)
-
 ## Site map
-
 ![site map](documentation/site-map.png)
+-->
 
 ## User Stories or Use Cases
 
