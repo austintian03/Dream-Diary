@@ -16,7 +16,7 @@ An Example User:
 ```javascript
 {
   username: "dreamydavid",
-  salt: // a password salt
+  salt: // a password salt,
   hash: // a password hash
 }
 ```
